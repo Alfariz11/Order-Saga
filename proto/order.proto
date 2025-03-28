@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "gen/orderpb;orderpb";
+
+service OrderService {
+  rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
+  rpc CancelOrder(CancelOrderRequest) returns (CancelOrderResponse);
+}
+
+message CreateOrderRequest {
+  string user_id = 1;
+  string item_id = 2;
+}
+
+message CreateOrderResponse {
+  string order_id = 1;
+  string status = 2; // PENDING, COMPLETED
+}
+
+message CancelOrderRequest {
+  string order_id = 1;
+}
+
+message CancelOrderResponse {
+  string status = 1; // CANCELLED
+}
